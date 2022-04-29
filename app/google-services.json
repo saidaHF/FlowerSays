@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "308023522107",
+    "project_id": "simonsays-e8259",
+    "storage_bucket": "simonsays-e8259.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:308023522107:android:bfd6d112c2a84c77177d1e",
+        "android_client_info": {
+          "package_name": "com.example.simonsaysapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "308023522107-teleguo7u9udnf4bmpktk2fgh2g28cso.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCp73nCEXuSb9EEsmfDu8jtYyA1rpfsInQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "308023522107-teleguo7u9udnf4bmpktk2fgh2g28cso.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
