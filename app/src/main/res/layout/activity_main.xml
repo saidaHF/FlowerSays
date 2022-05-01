@@ -8,22 +8,6 @@
     android:padding="8dp"
     tools:context=".MainLogged">
 
-    <Button
-        android:id="@+id/buttonStart"
-        android:layout_width="109dp"
-        android:layout_height="117dp"
-        android:backgroundTint="#B8A233"
-        android:fontFamily="@font/architects_daughter"
-        android:text="Start"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:cornerRadius="150px"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.423" />
-
     <TextView
         android:id="@+id/textViewFlowerTitle"
         android:layout_width="266dp"
@@ -40,6 +24,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.024" />
+
+    <Button
+        android:id="@+id/buttonStart"
+        android:layout_width="109dp"
+        android:layout_height="117dp"
+        android:backgroundTint="#B8A233"
+        android:fontFamily="@font/architects_daughter"
+        android:text="Start"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:cornerRadius="150px"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.423" />
 
     <ImageView
         android:id="@+id/yellowcircle"
@@ -89,7 +89,7 @@
         app:layout_constraintHorizontal_bias="0.112"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewFlowerTitle"
-        app:layout_constraintVertical_bias="0.212" />
+        app:layout_constraintVertical_bias="0.239" />
 
     <ImageView
         android:id="@+id/bluecircle"
@@ -98,10 +98,10 @@
         android:background="@drawable/btn_image_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.905"
+        app:layout_constraintHorizontal_bias="0.928"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewFlowerTitle"
-        app:layout_constraintVertical_bias="0.214" />
+        app:layout_constraintVertical_bias="0.234" />
 
     <TextView
         android:id="@+id/textViewScore"
@@ -159,10 +159,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/architects_daughter"
-            android:text="RECORD"
+            android:text="- - YOUR RECORD - -"
             android:textAlignment="center"
             android:textColor="#F44336"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="normal" />
 
         <TextView
@@ -200,6 +200,7 @@
                 android:layout_height="56dp" />
 
         </LinearLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,10 +16,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 
-enum class ProviderType{
-    BASIC
-   // GOOGLE
-}
+//enum class ProviderType{
+//    BASIC
+//    GOOGLE
+//}
 
 //private val db = FirebaseFirestore.getInstance()
 
@@ -40,6 +40,7 @@ class MainLogged : AppCompatActivity() {
         // que comenci la musica al iniciar la app
         val mp = MediaPlayer.create(this, R.raw.sound_background)
         mp.start()
+
         //click al botó inscriu-te
         binding.signUpButton.setOnClickListener {
             if (binding.emailEditText.text.isNotEmpty() && binding.passwordEditText.text.isNotEmpty()) {
@@ -48,7 +49,7 @@ class MainLogged : AppCompatActivity() {
                     binding.passwordEditText.text.toString()
                 ).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        mp.pause()
+                        mp.stop()
                         showHome(it.result?.user?.email ?: "")
                     } else {
                         showAlert()

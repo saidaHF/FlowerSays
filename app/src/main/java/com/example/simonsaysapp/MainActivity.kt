@@ -17,28 +17,31 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-
+    //  crear una connexió amb la base de dades:
     private val db = FirebaseFirestore.getInstance()
     private var clicks = 0
     private var btns = arrayOfNulls<View>(5)
     private var sounds = arrayOfNulls<MediaPlayer>(5)
     private val sons = mutableListOf<Int>()
     private lateinit var error: MediaPlayer
-    private var firstTime = true
+//    private var firstTime = true
     private var points = 0
     private var record = 0
-
     private var mail = "null"
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val bundle = intent.extras
         val email = bundle?.getString("email")
-      //  val provider = bundle?.getString("provider")
         mail = email.toString()
+
+        db.collection("users").document(mail).get().addOnSuccessListener {
+            binding.numRecordTextView.text = it.get("score") as String?
+        }
 
         sounds[0] = MediaPlayer.create(this, R.raw.blue_sound)
         sounds[1] = MediaPlayer.create(this, R.raw.red_sound)
@@ -65,19 +68,24 @@ class MainActivity : AppCompatActivity() {
         // Bloquejem les imatges dels botons del joc fins a que comenci el joc
         activateImages(false)
 
-        // i afegim el so dels botons:
-        val buttonStartToPlay = binding.buttonStart
-        addSoundButton(buttonStartToPlay, R.raw.center_pressed)
-
-        // afegim la funció al botó START
+        // afegim el botó START
         val button: Button = findViewById(R.id.buttonStart)
         button.setOnClickListener {
+
+            val mp = MediaPlayer.create(this, R.raw.center_pressed)
+//          mp.setVolume(1.0f,1.0f)
+            mp.start()
+
             activateImages(true)
             delay(950) {
                 playFlower()
-                // button.isEnabled = false
+                button.isEnabled = false
             }
         }
+    }
+
+    enum class ProviderType{
+        BASIC
     }
 
     inline fun delay(delay: Long, crossinline completion: () -> Unit) {
@@ -87,29 +95,36 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun playHuman(valor: Int) {
-
         if(sons[clicks]==valor) {
             clicks ++
             if(clicks == sons.size) {
               //  updatePoints()
-                points = points + 2
+                points += 2
                 delay(650L * valor) {
-                    playFlower()
                     binding.textViewNumScore.text = points.toString()
+                    playFlower()
                 }
             }
         } else {
-            error?.start()
-            sons.clear()
-            binding.textViewNumScore.text = "0"
-            // button.isEnabled = true
+            delay(350L * valor) {
+                error?.start()
+                sons.clear()
+                binding.textViewNumScore.text = "0"
+                activateImages(false)
+                val button: Button = findViewById(R.id.buttonStart)
+                button.isEnabled = true
 
-            if (points > record) {
-                binding.numRecordTextView.text = points.toString()
-                // guardem en la bbdd el record:
-                db.collection("users").document(mail).set(hashMapOf("score"
-                        to binding.numRecordTextView.text))
-           }
+                if (points > record) {
+                    // actualitzem la puntuació del record:
+                    binding.numRecordTextView.text = points.toString()
+                    record = points
+
+                    // guardem en la bbdd el record:
+                    db.collection("users").document(mail).set(hashMapOf("score"
+                            to binding.numRecordTextView.text.toString()))
+                }
+            }
+
            // alerta
         }
     }
@@ -117,8 +132,8 @@ class MainActivity : AppCompatActivity() {
     private fun playFlower() {
         binding.textViewFlowerTitle.text = "Flower Says"
         activateImages(false)
-
         sons?.add(numRandom())
+
         for(i in 0 until(sons.size)) {
             delay(650L*i) {
                 game(sons[i])
@@ -172,17 +187,20 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun addSoundButton(button: Button, sound: Int) {
-        button.setOnClickListener {
-            val mp = MediaPlayer.create(this, sound)
-            mp.start()
-        }
-    }
+
+//    private fun addSoundButton(button: Button, sound: Int) {
+//        button.setOnClickListener {
+//            val mp = MediaPlayer.create(this, sound)
+//            mp.setVolume(1.0f,1.0f)
+//            mp.start()
+//        }
+//    }
 
     private fun addSoundImage(image: Int, sound: Int, num: Int) {
         val imageClicked = findViewById<ImageView>(image)
         imageClicked.setOnClickListener {
             val mp = MediaPlayer.create(this, sound)
+            mp.setVolume(1.0f,1.0f)
             mp.start()
             playHuman(num)
         }
@@ -204,12 +222,13 @@ class MainActivity : AppCompatActivity() {
     private fun setup(email: String) {
         title = "Let's play!"
         binding.emailTextView.text = email
-      //  binding.providerTextView.text = provider
         //click al botó Tancar sessió
         binding.logOutButton.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             // i tornem a la pantalla d'inici
             onBackPressed()
+            val mp = MediaPlayer.create(this, R.raw.sound_background)
+            mp.start()
         }
     }
 }

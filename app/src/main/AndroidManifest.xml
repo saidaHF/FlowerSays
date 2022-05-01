@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SimonSaysApp">
-        <activity android:name=".MainLogged"
+        <activity
+            android:name=".MainLogged"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
