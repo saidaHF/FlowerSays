@@ -37,6 +37,9 @@ class MainActivity : AppCompatActivity() {
 
         val bundle = intent.extras
         val email = bundle?.getString("email")
+
+
+
         mail = email.toString()
 
         db.collection("users").document(mail).get().addOnSuccessListener {

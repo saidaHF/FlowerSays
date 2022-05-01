@@ -25,22 +25,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.024" />
 
-    <Button
-        android:id="@+id/buttonStart"
-        android:layout_width="109dp"
-        android:layout_height="117dp"
-        android:backgroundTint="#B8A233"
-        android:fontFamily="@font/architects_daughter"
-        android:text="Start"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:cornerRadius="150px"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.423" />
-
     <ImageView
         android:id="@+id/yellowcircle"
         android:layout_width="188dp"
@@ -86,10 +70,10 @@
         android:background="@drawable/btn_image_red"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.112"
+        app:layout_constraintHorizontal_bias="0.098"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewFlowerTitle"
-        app:layout_constraintVertical_bias="0.239" />
+        app:layout_constraintVertical_bias="0.23" />
 
     <ImageView
         android:id="@+id/bluecircle"
@@ -134,6 +118,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewFlowerTitle"
         app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/buttonStart"
+        android:layout_width="109dp"
+        android:layout_height="117dp"
+        android:backgroundTint="#B8A233"
+        android:fontFamily="@font/architects_daughter"
+        android:text="Start"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:cornerRadius="150px"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.423" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
